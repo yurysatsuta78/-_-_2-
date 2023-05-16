@@ -28,28 +28,27 @@ namespace kurs
         ShowCarsForm f4 = new ShowCarsForm();
         Basket f5 = new Basket();
         Addmoneyform f6 = new Addmoneyform();
-        SqlConnection cn = new SqlConnection();
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Database DB = new Database();
             for(int i = 0; i < List.basket.Count; i++)
             {
-                cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
-                cn.Open();
                 string brand = List.basket[i].Brand;
                 string model = List.basket[i].Model;
                 int year = Convert.ToInt32(List.basket[i].Year);
                 double price = Convert.ToDouble(List.basket[i].Price);
-                double enginevolume = Convert.ToDouble(List.basket[i].EngineVolume);
+                string enginevolume = List.basket[i].EngineVolume;
                 string enginetype = List.basket[i].EngineType;
                 string comment = List.basket[i].Comment;
                 string phonenumber = List.basket[i].PhoneNumber;
                 string driveunit = List.basket[i].DriveUnit;
                 string transmission = List.basket[i].Transmission;
                 string strInsertCar = string.Format("INSERT INTO Car VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", brand, model, year, price, enginevolume, enginetype, comment, phonenumber, driveunit, transmission);
-                SqlCommand cmdInsertCar = new SqlCommand(strInsertCar, cn);
+                SqlCommand cmdInsertCar = new SqlCommand(strInsertCar, DB.getConnection());
+                DB.openConnection();
                 cmdInsertCar.ExecuteNonQuery();
-                cn.Close();
+                DB.closeConnection();
             }
             List.basket.Clear();
             Application.Exit();

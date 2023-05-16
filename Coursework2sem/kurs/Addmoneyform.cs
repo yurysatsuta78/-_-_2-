@@ -17,7 +17,7 @@ namespace kurs
         {
             InitializeComponent();
         }
-        SqlConnection cn = new SqlConnection();
+        Database DB = new Database();
         string balanceupdate = String.Format("INSERT INTO BalanceUpdates VALUES (@userid, @money, @datetime)");
 
         private void Addmoneyform_FormClosing(object sender, FormClosingEventArgs e)
@@ -35,14 +35,13 @@ namespace kurs
         {
             User.balance = User.balance + 100;
             label2.Text = Convert.ToString(User.balance);
-            cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
             string addmoney = String.Format("UPDATE Users SET Balance = @balance WHERE UserID = @userid");
             try
             {
-                SqlCommand cmd = new SqlCommand(addmoney, cn);
+                SqlCommand cmd = new SqlCommand(addmoney, DB.getConnection());
                 cmd.Parameters.AddWithValue("@balance", User.balance);
                 cmd.Parameters.AddWithValue("@userid", User.userid);
-                cn.Open();
+                DB.openConnection();
                 cmd.ExecuteNonQuery();
             }
             catch 
@@ -51,14 +50,14 @@ namespace kurs
             }
             finally 
             {
-                cn.Close();
+                DB.closeConnection();
                 try
                 {
-                    SqlCommand cmd1 = new SqlCommand(balanceupdate, cn);
+                    SqlCommand cmd1 = new SqlCommand(balanceupdate, DB.getConnection());
                     cmd1.Parameters.AddWithValue("@userid", User.userid);
                     cmd1.Parameters.AddWithValue("@money", 100);
                     cmd1.Parameters.AddWithValue("@datetime", DateTime.Now);
-                    cn.Open();
+                    DB.openConnection();
                     cmd1.ExecuteNonQuery();
                 }
                 catch
@@ -67,7 +66,7 @@ namespace kurs
                 }
                 finally
                 {
-                    cn.Close();
+                    DB.closeConnection();
                 }
             }
         }
@@ -76,14 +75,13 @@ namespace kurs
         {
             User.balance = User.balance + 1000;
             label2.Text = Convert.ToString(User.balance);
-            cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
             string addmoney = String.Format("UPDATE Users SET Balance = @balance WHERE UserID = @userid");
             try
             {
-                SqlCommand cmd = new SqlCommand(addmoney, cn);
+                SqlCommand cmd = new SqlCommand(addmoney, DB.getConnection());
                 cmd.Parameters.AddWithValue("@balance", User.balance);
                 cmd.Parameters.AddWithValue("@userid", User.userid);
-                cn.Open();
+                DB.openConnection();
                 cmd.ExecuteNonQuery();
             }
             catch
@@ -92,14 +90,14 @@ namespace kurs
             }
             finally
             {
-                cn.Close();
+                DB.closeConnection();
                 try
                 {
-                    SqlCommand cmd1 = new SqlCommand(balanceupdate, cn);
+                    SqlCommand cmd1 = new SqlCommand(balanceupdate, DB.getConnection());
                     cmd1.Parameters.AddWithValue("@userid", User.userid);
                     cmd1.Parameters.AddWithValue("@money", 1000);
                     cmd1.Parameters.AddWithValue("@datetime", DateTime.Now);
-                    cn.Open();
+                    DB.openConnection();
                     cmd1.ExecuteNonQuery();
                 }
                 catch
@@ -108,7 +106,7 @@ namespace kurs
                 }
                 finally
                 {
-                    cn.Close();
+                    DB.closeConnection();
                 }
             }
         }
@@ -117,14 +115,13 @@ namespace kurs
         {
             User.balance = User.balance + 10000;
             label2.Text = Convert.ToString(User.balance);
-            cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
             string addmoney = String.Format("UPDATE Users SET Balance = @balance WHERE UserID = @userid");
             try
             {
-                SqlCommand cmd = new SqlCommand(addmoney, cn);
+                SqlCommand cmd = new SqlCommand(addmoney, DB.getConnection());
                 cmd.Parameters.AddWithValue("@balance", User.balance);
                 cmd.Parameters.AddWithValue("@userid", User.userid);
-                cn.Open();
+                DB.openConnection();
                 cmd.ExecuteNonQuery();
             }
             catch
@@ -133,23 +130,23 @@ namespace kurs
             }
             finally
             {
-                cn.Close();
+                DB.closeConnection();
                 try
                 {
-                    SqlCommand cmd1 = new SqlCommand(balanceupdate, cn);
+                    SqlCommand cmd1 = new SqlCommand(balanceupdate, DB.getConnection());
                     cmd1.Parameters.AddWithValue("@userid", User.userid);
                     cmd1.Parameters.AddWithValue("@money", 10000);
                     cmd1.Parameters.AddWithValue("@datetime", DateTime.Now);
-                    cn.Open();
+                    DB.openConnection();
                     cmd1.ExecuteNonQuery();
                 }
                 catch
                 {
-                MessageBox.Show("Данные о пополнении не добавлены!");
+                    MessageBox.Show("Данные о пополнении не добавлены!");
                 }
                 finally
                 {
-                cn.Close();
+                    DB.closeConnection();
                 }
             }
         }

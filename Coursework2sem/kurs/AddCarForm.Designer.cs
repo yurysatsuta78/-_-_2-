@@ -206,18 +206,6 @@
             this.Brand.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Brand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Brand.FormattingEnabled = true;
-            this.Brand.Items.AddRange(new object[] {
-            "Audi",
-            "Toyota",
-            "Mazda",
-            "Nissan",
-            "Lada(ВАЗ)",
-            "Mitsubishi",
-            "Citroen",
-            "Opel",
-            "BMW",
-            "Subaru",
-            "Volkswagen"});
             this.Brand.Location = new System.Drawing.Point(275, 60);
             this.Brand.Name = "Brand";
             this.Brand.Size = new System.Drawing.Size(265, 21);
@@ -434,6 +422,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавить автомобиль";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
+            this.Load += new System.EventHandler(this.AddCarForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -139,3 +139,37 @@ C:\Users\Yura\Desktop\КУРСОВАЯ 2 семестр1\kurs\obj\Debug\kurs.csp
 C:\Users\Yura\Desktop\КУРСОВАЯ 2 семестр1\kurs\obj\Debug\kurs.csproj.CoreCompileInputs.cache
 C:\Users\Yura\Desktop\КУРСОВАЯ 2 семестр1\kurs\obj\Debug\kurs.exe
 C:\Users\Yura\Desktop\КУРСОВАЯ 2 семестр1\kurs\obj\Debug\kurs.pdb
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\bin\Debug\kurs.exe.config
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\bin\Debug\kurs.exe
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\bin\Debug\kurs.pdb
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.csproj.AssemblyReference.cache
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.csproj.SuggestedBindingRedirects.cache
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.Addmoneyform.resources
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.Authorization.resources
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.Basket.resources
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.MainForm.resources
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.AddCarForm.resources
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.Properties.Resources.resources
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.Registration.resources
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.ShowCarsForm.resources
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.csproj.GenerateResource.cache
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.csproj.CoreCompileInputs.cache
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.exe
+D:\курсовая\CourseWork_2semestre\Coursework2sem\kurs\obj\Debug\kurs.pdb
+C:\Users\User\Desktop\Coursework2sem\kurs\bin\Debug\kurs.exe.config
+C:\Users\User\Desktop\Coursework2sem\kurs\bin\Debug\kurs.exe
+C:\Users\User\Desktop\Coursework2sem\kurs\bin\Debug\kurs.pdb
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.Addmoneyform.resources
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.Authorization.resources
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.Basket.resources
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.MainForm.resources
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.AddCarForm.resources
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.Properties.Resources.resources
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.Registration.resources
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.ShowCarsForm.resources
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.csproj.GenerateResource.cache
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.exe
+C:\Users\User\Desktop\Coursework2sem\kurs\obj\Debug\kurs.pdb

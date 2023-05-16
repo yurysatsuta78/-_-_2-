@@ -20,7 +20,7 @@ namespace kurs
         {
             InitializeComponent();
         }
-        SqlConnection cn = new SqlConnection();
+        Database DB = new Database();
 
         private void Basket_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -52,8 +52,6 @@ namespace kurs
                 User.balance = User.balance - List.allprice;
                 foreach (Car item in List.basket)
                 {
-                    cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
-                    cn.Open();
                     int userid = User.userid;
                     string brand = item.Brand;
                     string model = item.Model;
@@ -61,18 +59,18 @@ namespace kurs
                     double price = item.Price;
                     DateTime date = DateTime.Now;
                     string neword = string.Format("INSERT INTO Basket VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')", userid, brand, model, year, price, date);
-                    SqlCommand cmd0 = new SqlCommand(neword, cn);
+                    SqlCommand cmd0 = new SqlCommand(neword, DB.getConnection());
+                    DB.openConnection();
                     cmd0.ExecuteNonQuery();
-                    cn.Close();
+                    DB.closeConnection();
                 }
-                //cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
                 string addmoney = String.Format("UPDATE Users SET Balance = @balance WHERE UserID = @userid");
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(addmoney, cn);
+                    SqlCommand cmd = new SqlCommand(addmoney, DB.getConnection());
                     cmd.Parameters.AddWithValue("@balance", User.balance);
                     cmd.Parameters.AddWithValue("@userid", User.userid);
-                    cn.Open();
+                    DB.openConnection();
                     cmd.ExecuteNonQuery();
                 }
                 catch
@@ -81,7 +79,7 @@ namespace kurs
                 }
                 finally
                 {
-                    cn.Close();
+                    DB.closeConnection();
                 }
                 MessageBox.Show("Спасибо за покупку!");
                 List.basket.Clear();
@@ -97,22 +95,21 @@ namespace kurs
 
         private void Deletefrombasket_Click(object sender, EventArgs e)
         {
-            cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
-            cn.Open();
             string brand = List.basket[basketList.SelectedIndex].Brand;
             string model = List.basket[basketList.SelectedIndex].Model;
             int year = Convert.ToInt32(List.basket[basketList.SelectedIndex].Year);
             double price = Convert.ToDouble(List.basket[basketList.SelectedIndex].Price);
-            double enginevolume = Convert.ToDouble(List.basket[basketList.SelectedIndex].EngineVolume);
+            string enginevolume = List.basket[basketList.SelectedIndex].EngineVolume;
             string enginetype = List.basket[basketList.SelectedIndex].EngineType;
             string comment = List.basket[basketList.SelectedIndex].Comment;
             string phonenumber = List.basket[basketList.SelectedIndex].PhoneNumber;
             string driveunit = List.basket[basketList.SelectedIndex].DriveUnit;
             string transmission = List.basket[basketList.SelectedIndex].Transmission;
             string strInsertCar = string.Format("INSERT INTO Car VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", brand, model, year, price, enginevolume, enginetype, comment, phonenumber, driveunit, transmission);
-            SqlCommand cmdInsertCar = new SqlCommand(strInsertCar, cn);
+            SqlCommand cmdInsertCar = new SqlCommand(strInsertCar, DB.getConnection());
+            DB.openConnection();
             cmdInsertCar.ExecuteNonQuery();
-            cn.Close();
+            DB.closeConnection();
             List.basket.Remove((Car)basketList.SelectedItem);
             basketList.DataSource = null;
             basketList.DataSource = List.basket;

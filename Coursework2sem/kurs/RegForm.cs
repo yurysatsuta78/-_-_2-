@@ -21,7 +21,6 @@ namespace kurs
         {
             InitializeComponent();
         }
-        SqlConnection cn = new SqlConnection();
 
         private void Cancel_Click(object sender, EventArgs e)
         {
@@ -30,6 +29,7 @@ namespace kurs
 
         private void RegButton_Click(object sender, EventArgs e)
         {
+            Database DB = new Database();
             if (Name1.Text == String.Empty || Surname.Text == String.Empty || Login.Text == String.Empty || Password.Text == String.Empty || PasswordRep.Text == String.Empty)
             {
                 return;
@@ -46,17 +46,16 @@ namespace kurs
             {
                 try
                 {
-                    cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
-                    cn.Open();
                     string name = Name1.Text;
                     string surname = Surname.Text;
                     string login = Login.Text;
                     string password = Password.Text;
                     double balance = 0;
                     string newuser = string.Format("INSERT INTO Users VALUES ('{0}','{1}','{2}','{3}','{4}')", name, surname, login, password, balance);
-                    SqlCommand cmd = new SqlCommand(newuser, cn);
+                    SqlCommand cmd = new SqlCommand(newuser, DB.getConnection());
+                    DB.openConnection();
                     cmd.ExecuteNonQuery();
-                    cn.Close();
+                    DB.closeConnection();
                 }
                 catch
                 {
@@ -74,14 +73,13 @@ namespace kurs
         {
             string userlogin = Login.Text;
             bool same = false;
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
+            Database DB = new Database();
             string usrs = "SELECT * FROM Users WHERE Login = @userlogin";
             try
             {
-                SqlCommand cmd = new SqlCommand(usrs, cn);
+                SqlCommand cmd = new SqlCommand(usrs, DB.getConnection());
                 cmd.Parameters.AddWithValue("@userlogin", userlogin);
-                cn.Open();
+                DB.openConnection();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     same = reader.Read();
@@ -93,7 +91,7 @@ namespace kurs
             }
             finally
             {
-                cn.Close();
+                DB.closeConnection();
                 if (same)
                 {
                     Login.ForeColor = Color.Red;

@@ -29,15 +29,14 @@ namespace kurs
             string userlogin = LoginAuth.Text;
             string userpassword = PasswordAuth.Text;
             bool success = false;
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
+            Database DB = new Database();
             string usrs = "SELECT * FROM Users WHERE Login = @userlogin AND Password collate Cyrillic_General_CS_AS = @userpassword";
             try
             {
-                SqlCommand cmd = new SqlCommand(usrs, cn);
+                SqlCommand cmd = new SqlCommand(usrs, DB.getConnection());
                 cmd.Parameters.AddWithValue("@userlogin", userlogin);
                 cmd.Parameters.AddWithValue("@userpassword", userpassword);
-                cn.Open();
+                DB.openConnection();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     success = reader.Read();
@@ -45,14 +44,14 @@ namespace kurs
             }
             finally 
             {
-                cn.Close();
+                DB.closeConnection();
             }
             if (success)
             {
-                SqlCommand cmd = new SqlCommand(usrs, cn);
+                SqlCommand cmd = new SqlCommand(usrs, DB.getConnection());
                 cmd.Parameters.AddWithValue("@userlogin", userlogin);
                 cmd.Parameters.AddWithValue("@userpassword", userpassword);
-                cn.Open();
+                DB.openConnection();
                 using (SqlDataReader reader2 = cmd.ExecuteReader())
                 {
                     while (reader2.Read())
@@ -62,7 +61,7 @@ namespace kurs
                         User.balance = reader2.GetDouble(5);
                     }
                 }
-                cn.Close();
+                DB.closeConnection();
                 MainForm f1 = new MainForm();
                 f1.Show();
                 Hide();

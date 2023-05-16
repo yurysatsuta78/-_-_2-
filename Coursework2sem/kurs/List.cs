@@ -16,6 +16,7 @@ namespace kurs
         #region списки
         static public List<Car> carList = new List<Car>();
         static public List<Car> basket = new List<Car>();
+        static public List<string> models = new List<string>();
         static public double allprice;
         #endregion
 
@@ -44,11 +45,10 @@ namespace kurs
         }
         public static void Reload() 
         {
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
-            cn.Open();
+            Database DB = new Database();
             string strCars = "Select * From Car";
-            SqlCommand cmdCars = new SqlCommand(strCars, cn);
+            SqlCommand cmdCars = new SqlCommand(strCars, DB.getConnection());
+            DB.openConnection();
             SqlDataReader CarsDataReader = cmdCars.ExecuteReader();
             List.carList.Clear();
             while (CarsDataReader.Read())
@@ -68,7 +68,7 @@ namespace kurs
                 Car car = new Car(carid, brand, model, year, price, enginevolume, enginetype, driveunit, comment, phonenumber, transmission);
                 List.AddCar(car);
             }
-            cn.Close();
+            DB.closeConnection();
         }
         #endregion
     }

@@ -21,7 +21,7 @@ namespace kurs
         {
             InitializeComponent();
         }
-        SqlConnection cn = new SqlConnection();
+        Database DB = new Database();
 
         private void CloseForm2_Click(object sender, EventArgs e)
         {
@@ -50,22 +50,21 @@ namespace kurs
                 }
                 try
                 {
-                    cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
-                    cn.Open();
                     string brand = Brand.Text;
                     string model = Model.Text;
                     int year = Convert.ToInt32(Year.Text);
                     double price = Convert.ToDouble(Price.Text);
-                    double enginevolume = Convert.ToDouble(EngineVolume.Text);
+                    string enginevolume = EngineVolume.Text;
                     string enginetype = EngineType.Text;
                     string comment = Comment.Text;
                     string phonenumber = Number.Text;
                     string driveunit = DriveUnit.Text;
                     string transmission = Transmission.Text;
                     string strInsertCar = string.Format("INSERT INTO Car VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", brand, model, year, price, enginevolume, enginetype, comment, phonenumber, driveunit, transmission);
-                    SqlCommand cmdInsertCar = new SqlCommand(strInsertCar, cn);
+                    SqlCommand cmdInsertCar = new SqlCommand(strInsertCar, DB.getConnection());
+                    DB.openConnection();
                     cmdInsertCar.ExecuteNonQuery();
-                    cn.Close();
+                    DB.closeConnection();
                 }
                 catch
                 {
@@ -147,6 +146,31 @@ namespace kurs
             //Разрешить вводить только цифры и +
             if (char.IsNumber(e.KeyChar) | (e.KeyChar == Convert.ToChar("+")) | e.KeyChar == '\b') return;
             else e.Handled = true;
+        }
+
+        private void AddCarForm_Load(object sender, EventArgs e)
+        {
+            Database DB = new Database();
+            string str = "Select * From Models";
+            SqlCommand list = new SqlCommand(str, DB.getConnection());
+            DB.openConnection();
+            SqlDataReader reader = list.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    List.models.Add(reader.GetString(1));
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Модели не загружены!");
+            }
+            finally 
+            {
+                DB.closeConnection();
+                Brand.DataSource = List.models;
+            }
         }
     }
 }

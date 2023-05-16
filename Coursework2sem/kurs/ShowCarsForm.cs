@@ -21,7 +21,7 @@ namespace kurs
         {
             InitializeComponent();
         }
-        SqlConnection cn = new SqlConnection();
+        Database DB = new Database(); 
         private void ShowCarsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Открыть начальную форму при нажатии на крестик
@@ -38,6 +38,7 @@ namespace kurs
         private void ShowCarsForm_Load(object sender, EventArgs e)
         {
             //Загружает в список объекты
+
             checkedListBox1.DataSource = List.carList;
             label5.Text = Convert.ToString(User.balance);
         }
@@ -52,12 +53,11 @@ namespace kurs
             }
             foreach (Car item in List.basket)
             {
-                cn.ConnectionString = @"Data Source=HOME-PC;Initial Catalog=Sacuta-kurs;Integrated Security=True";
-                cn.Open();
                 string del = "DELETE FROM Car WHERE CarId =" + item.Carid;
-                SqlCommand cmd = new SqlCommand(del, cn);
+                SqlCommand cmd = new SqlCommand(del, DB.getConnection());
+                DB.openConnection();
                 cmd.ExecuteNonQuery();
-                cn.Close();
+                DB.closeConnection();
             }
             MessageBox.Show("Автомобиль(автомобили) добавлен(ы) в корзину!");
             checkedListBox1.DataSource = null;
