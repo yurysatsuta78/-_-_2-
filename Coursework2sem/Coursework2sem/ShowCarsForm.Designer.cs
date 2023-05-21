@@ -43,7 +43,7 @@
             // 
             this.BackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BackButton.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.BackButton.Location = new System.Drawing.Point(76, 293);
+            this.BackButton.Location = new System.Drawing.Point(76, 353);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(370, 23);
             this.BackButton.TabIndex = 0;
@@ -55,7 +55,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(222, 36);
+            this.label1.Location = new System.Drawing.Point(228, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 3;
@@ -75,7 +75,7 @@
             // 
             this.Buy.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Buy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.Buy.Location = new System.Drawing.Point(472, 293);
+            this.Buy.Location = new System.Drawing.Point(472, 324);
             this.Buy.Name = "Buy";
             this.Buy.Size = new System.Drawing.Size(294, 23);
             this.Buy.TabIndex = 6;
@@ -99,7 +99,7 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(76, 52);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(370, 229);
+            this.checkedListBox1.Size = new System.Drawing.Size(370, 244);
             this.checkedListBox1.TabIndex = 9;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -108,7 +108,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(73, 339);
+            this.label4.Location = new System.Drawing.Point(73, 391);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 16);
             this.label4.TabIndex = 10;
@@ -119,7 +119,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(146, 339);
+            this.label5.Location = new System.Drawing.Point(146, 391);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 16);
             this.label5.TabIndex = 11;
@@ -127,9 +127,9 @@
             // 
             // Reloadbutton
             // 
-            this.Reloadbutton.Location = new System.Drawing.Point(76, 26);
+            this.Reloadbutton.Location = new System.Drawing.Point(76, 324);
             this.Reloadbutton.Name = "Reloadbutton";
-            this.Reloadbutton.Size = new System.Drawing.Size(91, 23);
+            this.Reloadbutton.Size = new System.Drawing.Size(370, 23);
             this.Reloadbutton.TabIndex = 12;
             this.Reloadbutton.Text = "Обновить";
             this.Reloadbutton.UseVisualStyleBackColor = true;

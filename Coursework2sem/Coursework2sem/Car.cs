@@ -15,27 +15,24 @@ namespace kurs
         int carid;
         string driveunit;
         string transmission;
+        int sold;
         #endregion
 
         #region свойства
         public int Carid { get { return carid; } }
         public string DriveUnit {get { return driveunit; } }
         public string Transmission{ get { return transmission; } }
+        public int Sold { get { return sold; } }
         #endregion
 
         #region конструкторы
-        public Car(int carid, string brand, string model, int year, double price, string enginevolume, string enginetype, string driveunit, string comment, string phonenumber, string transmission)
+        public Car(int carid, string brand, string model, int year, double price, string enginevolume, string enginetype, string driveunit, string comment, string phonenumber, string transmission, int sold)
             : base(brand, model, year, price, enginevolume, enginetype, comment, phonenumber) 
         {
             this.carid = carid;
             this.driveunit = driveunit;
             this.transmission = transmission;
-        }
-
-        public Car(string brand, string model, int year)
-            : base(brand, model, year) 
-        {
-
+            this.sold = sold;
         }
         #endregion
 

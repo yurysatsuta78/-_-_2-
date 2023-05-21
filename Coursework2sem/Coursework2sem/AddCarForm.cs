@@ -60,7 +60,7 @@ namespace kurs
                     string phonenumber = Number.Text;
                     string driveunit = DriveUnit.Text;
                     string transmission = Transmission.Text;
-                    string strInsertCar = string.Format("INSERT INTO Car VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", brand, model, year, price, enginevolume, enginetype, comment, phonenumber, driveunit, transmission);
+                    string strInsertCar = string.Format("INSERT INTO Car VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}', '{10}')", brand, model, year, price, enginevolume, enginetype, comment, phonenumber, driveunit, transmission, 0);
                     SqlCommand cmdInsertCar = new SqlCommand(strInsertCar, DB.getConnection());
                     DB.openConnection();
                     cmdInsertCar.ExecuteNonQuery();
@@ -150,6 +150,7 @@ namespace kurs
 
         private void AddCarForm_Load(object sender, EventArgs e)
         {
+            List.models.Clear();
             Database DB = new Database();
             string str = "Select * From Models";
             SqlCommand list = new SqlCommand(str, DB.getConnection());

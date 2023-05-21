@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Car.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Favourite.cs" />
     <Compile Include="List.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

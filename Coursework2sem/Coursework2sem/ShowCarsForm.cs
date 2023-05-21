@@ -38,7 +38,6 @@ namespace kurs
         private void ShowCarsForm_Load(object sender, EventArgs e)
         {
             //Загружает в список объекты
-
             checkedListBox1.DataSource = List.carList;
             label5.Text = Convert.ToString(User.balance);
         }
@@ -46,22 +45,45 @@ namespace kurs
 
         private void Buy_Click(object sender, EventArgs e)
         {
-            foreach (Car item in checkedListBox1.CheckedItems) 
+            if (checkedListBox1.CheckedItems.Count > 0)
             {
-                List.basket.Add(item);
-                List.carList.Remove(item);
+                    foreach (Car item in checkedListBox1.CheckedItems)
+                    {
+                        bool success = false;
+                        string check = String.Format("Select * From Basket Where UserId = {0} And CarId = {1}", User.userid, item.Carid);
+                        try
+                        {
+                            SqlCommand cmd = new SqlCommand(check, DB.getConnection());
+                            DB.openConnection();
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                success = reader.Read();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Ошибка в проверке корзины!");
+                        }
+                        if (success == false)
+                        {
+                            string intobask = String.Format("Insert Into Basket Values ('{0}','{1}')", User.userid, item.Carid);
+                            SqlCommand cmd0 = new SqlCommand(intobask, DB.getConnection());
+                            DB.openConnection();
+                            cmd0.ExecuteNonQuery();
+                            DB.closeConnection();
+                            MessageBox.Show("Автомобиль(и) добавлен(ы) в корзину");
+                        }
+                        else 
+                        {
+                            MessageBox.Show("Уже в корзине!");
+                        }
+                    }
+                    List.BasketReload();
             }
-            foreach (Car item in List.basket)
+            else 
             {
-                string del = "DELETE FROM Car WHERE CarId =" + item.Carid;
-                SqlCommand cmd = new SqlCommand(del, DB.getConnection());
-                DB.openConnection();
-                cmd.ExecuteNonQuery();
-                DB.closeConnection();
+                return;
             }
-            MessageBox.Show("Автомобиль(автомобили) добавлен(ы) в корзину!");
-            checkedListBox1.DataSource = null;
-            checkedListBox1.DataSource = List.carList;
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,6 +105,7 @@ namespace kurs
 
         private void Reloadbutton_Click(object sender, EventArgs e)
         {
+            List.BasketReload();
             checkedListBox1.DataSource = null;
             checkedListBox1.DataSource = List.carList;
         }

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace kurs
 {
@@ -18,6 +21,8 @@ namespace kurs
         static public List<Car> basket = new List<Car>();
         static public List<string> models = new List<string>();
         static public double allprice;
+        public static List<Car> favouritesList = new List<Car>();
+        public static List<int> basketidList = new List<int>();
         #endregion
 
         #region списки с моделями
@@ -43,10 +48,10 @@ namespace kurs
         {
             basket.Add(ccar);
         }
-        public static void Reload() 
+        public static void Reload()
         {
             Database DB = new Database();
-            string strCars = "Select * From Car";
+            string strCars = String.Format("Select * From Car Where Sold = {0}", 0);
             SqlCommand cmdCars = new SqlCommand(strCars, DB.getConnection());
             DB.openConnection();
             SqlDataReader CarsDataReader = cmdCars.ExecuteReader();
@@ -64,11 +69,48 @@ namespace kurs
                 string phonenumber = CarsDataReader.GetString(8);
                 string driveunit = CarsDataReader.GetString(9);
                 string transmission = CarsDataReader.GetString(10);
-
-                Car car = new Car(carid, brand, model, year, price, enginevolume, enginetype, driveunit, comment, phonenumber, transmission);
+                int sold = CarsDataReader.GetInt32(11);
+                Car car = new Car(carid, brand, model, year, price, enginevolume, enginetype, driveunit, comment, phonenumber, transmission, sold);
                 List.AddCar(car);
             }
             DB.closeConnection();
+        }
+        public static void BasketReload()
+        {
+            Database DB = new Database();
+            try
+            {
+                string strFav = "Select CarId From Basket Where UserId = @userid";
+                SqlCommand cmd = new SqlCommand(strFav, DB.getConnection());
+                cmd.Parameters.AddWithValue("@userid", User.userid);
+                DB.openConnection();
+                SqlDataReader baskreader = cmd.ExecuteReader();
+                List.basketidList.Clear();
+                while (baskreader.Read())
+                {
+                    int carid = baskreader.GetInt32(0);
+                    List.basketidList.Add(carid);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось загрузить Id корзины!");
+            }
+            finally
+            {
+                DB.closeConnection();
+            }
+            List.basket.Clear();
+            foreach (int item in List.basketidList)
+            {
+                foreach (Car car in List.carList)
+                {
+                    if (car.Carid == item)
+                    {
+                        List.basket.Add(car);
+                    }
+                }
+            }
         }
         #endregion
     }
